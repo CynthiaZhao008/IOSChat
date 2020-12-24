@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,7 @@
 		2B3EEDF4259505FB0005E503 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B3EEDF2259505FB0005E503 /* LaunchScreen.storyboard */; };
 		2B3EEDFF259505FB0005E503 /* IOSChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3EEDFE259505FB0005E503 /* IOSChatTests.swift */; };
 		2B3EEE0A259505FB0005E503 /* IOSChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3EEE09259505FB0005E503 /* IOSChatUITests.swift */; };
+		2B3EEE2525953CB30005E503 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 2B3EEE2425953CB30005E503 /* SocketIO */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B3EEE2525953CB30005E503 /* SocketIO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +149,9 @@
 			dependencies = (
 			);
 			name = IOSChat;
+			packageProductDependencies = (
+				2B3EEE2425953CB30005E503 /* SocketIO */,
+			);
 			productName = IOSChat;
 			productReference = 2B3EEDE1259505F80005E503 /* IOSChat.app */;
 			productType = "com.apple.product-type.application";
@@ -218,6 +223,9 @@
 				Base,
 			);
 			mainGroup = 2B3EEDD8259505F80005E503;
+			packageReferences = (
+				2B3EEE2325953CB30005E503 /* XCRemoteSwiftPackageReference "socket" */,
+			);
 			productRefGroup = 2B3EEDE2259505F80005E503 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -597,6 +605,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2B3EEE2325953CB30005E503 /* XCRemoteSwiftPackageReference "socket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2B3EEE2425953CB30005E503 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B3EEE2325953CB30005E503 /* XCRemoteSwiftPackageReference "socket" */;
+			productName = SocketIO;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		2B3EEDED259505F80005E503 /* IOSChat.xcdatamodeld */ = {
