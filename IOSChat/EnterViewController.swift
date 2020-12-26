@@ -1,9 +1,6 @@
 //
 //  EnterViewController.swift
 //  WebSockets
-//
-//  Created by Elina Batyrova on 07.10.2020.
-//
 
 import UIKit
 
@@ -24,6 +21,9 @@ class EnterViewController: UIViewController {
         setupView()
         
         socketManager.establishConnection()
+        
+        self.hideKeyboardWhenTappedAround()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

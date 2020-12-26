@@ -1,9 +1,7 @@
 //
 //  AppDelegate.swift
 //  IOSChat
-//
-//  Created by Cynthia Zhao on 2020-12-24.
-//
+
 
 import UIKit
 import CoreData
@@ -77,3 +75,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}

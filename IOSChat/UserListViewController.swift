@@ -1,9 +1,7 @@
 //
 //  UserListViewController.swift
 //  WebSockets
-//
-//  Created by Elina Batyrova on 08.10.2020.
-//
+
 
 import UIKit
 
@@ -31,7 +29,7 @@ class UserListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.hideKeyboardWhenTappedAround()
         connectToChat()
         startObservingUserList()
     }

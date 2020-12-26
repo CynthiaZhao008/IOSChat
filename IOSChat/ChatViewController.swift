@@ -1,9 +1,6 @@
 //
 //  ChatViewController.swift
 //  WebSockets
-//
-//  Created by Elina Batyrova on 08.10.2020.
-//
 
 import UIKit
 
@@ -35,6 +32,9 @@ class ChatViewController: UIViewController {
         self.navigationItem.title = username
         
         startObservingMessages()
+        
+        self.hideKeyboardWhenTappedAround()
+        
     }
 
     func apply(username: String) {

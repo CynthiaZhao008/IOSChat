@@ -1,9 +1,7 @@
 //
 //  Model.swift
 //  
-//
-//  Created by user182051 on 12/26/20.
-//
+
 
 import Foundation
 

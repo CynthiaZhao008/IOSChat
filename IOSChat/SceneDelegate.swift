@@ -1,9 +1,7 @@
 //
 //  SceneDelegate.swift
 //  IOSChat
-//
-//  Created by Cynthia Zhao on 2020-12-24.
-//
+
 
 import UIKit
 

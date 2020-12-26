@@ -1,10 +1,6 @@
 //
 //  SocketIOManager.swift
 //  
-//
-//  Created by user182051 on 12/26/20.
-//
-
 import UIKit
 import SocketIO
 
