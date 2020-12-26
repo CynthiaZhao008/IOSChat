@@ -10,13 +10,18 @@
 		2B3EEDE5259505F80005E503 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3EEDE4259505F80005E503 /* AppDelegate.swift */; };
 		2B3EEDE7259505F80005E503 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3EEDE6259505F80005E503 /* SceneDelegate.swift */; };
 		2B3EEDE9259505F80005E503 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3EEDE8259505F80005E503 /* ViewController.swift */; };
-		2B3EEDEC259505F80005E503 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B3EEDEA259505F80005E503 /* Main.storyboard */; };
 		2B3EEDEF259505F80005E503 /* IOSChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B3EEDED259505F80005E503 /* IOSChat.xcdatamodeld */; };
 		2B3EEDF1259505FB0005E503 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B3EEDF0259505FB0005E503 /* Assets.xcassets */; };
 		2B3EEDF4259505FB0005E503 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B3EEDF2259505FB0005E503 /* LaunchScreen.storyboard */; };
 		2B3EEDFF259505FB0005E503 /* IOSChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3EEDFE259505FB0005E503 /* IOSChatTests.swift */; };
 		2B3EEE0A259505FB0005E503 /* IOSChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3EEE09259505FB0005E503 /* IOSChatUITests.swift */; };
 		2B3EEE2525953CB30005E503 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 2B3EEE2425953CB30005E503 /* SocketIO */; };
+		EB70562A2597CCEE00B50B99 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7056292597CCEE00B50B99 /* SocketIOManager.swift */; };
+		EB7056322597D45000B50B99 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7056312597D45000B50B99 /* Model.swift */; };
+		EB7056372597D50200B50B99 /* EnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7056362597D50200B50B99 /* EnterViewController.swift */; };
+		EB70563C2597D52000B50B99 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB70563B2597D52000B50B99 /* ChatViewController.swift */; };
+		EB7056412597D52E00B50B99 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7056402597D52E00B50B99 /* UserListViewController.swift */; };
+		EB7056462597D56B00B50B99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB7056452597D56B00B50B99 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +46,6 @@
 		2B3EEDE4259505F80005E503 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B3EEDE6259505F80005E503 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2B3EEDE8259505F80005E503 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		2B3EEDEB259505F80005E503 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2B3EEDEE259505F80005E503 /* IOSChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IOSChat.xcdatamodel; sourceTree = "<group>"; };
 		2B3EEDF0259505FB0005E503 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B3EEDF3259505FB0005E503 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -52,6 +56,12 @@
 		2B3EEE05259505FB0005E503 /* IOSChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IOSChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B3EEE09259505FB0005E503 /* IOSChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSChatUITests.swift; sourceTree = "<group>"; };
 		2B3EEE0B259505FB0005E503 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB7056292597CCEE00B50B99 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
+		EB7056312597D45000B50B99 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		EB7056362597D50200B50B99 /* EnterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterViewController.swift; sourceTree = "<group>"; };
+		EB70563B2597D52000B50B99 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		EB7056402597D52E00B50B99 /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
+		EB7056452597D56B00B50B99 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,11 +116,16 @@
 				2B3EEDE4259505F80005E503 /* AppDelegate.swift */,
 				2B3EEDE6259505F80005E503 /* SceneDelegate.swift */,
 				2B3EEDE8259505F80005E503 /* ViewController.swift */,
-				2B3EEDEA259505F80005E503 /* Main.storyboard */,
+				EB7056312597D45000B50B99 /* Model.swift */,
+				EB7056452597D56B00B50B99 /* Main.storyboard */,
+				EB7056292597CCEE00B50B99 /* SocketIOManager.swift */,
 				2B3EEDF0259505FB0005E503 /* Assets.xcassets */,
 				2B3EEDF2259505FB0005E503 /* LaunchScreen.storyboard */,
 				2B3EEDF5259505FB0005E503 /* Info.plist */,
 				2B3EEDED259505F80005E503 /* IOSChat.xcdatamodeld */,
+				EB7056362597D50200B50B99 /* EnterViewController.swift */,
+				EB70563B2597D52000B50B99 /* ChatViewController.swift */,
+				EB7056402597D52E00B50B99 /* UserListViewController.swift */,
 			);
 			path = IOSChat;
 			sourceTree = "<group>";
@@ -244,7 +259,7 @@
 			files = (
 				2B3EEDF4259505FB0005E503 /* LaunchScreen.storyboard in Resources */,
 				2B3EEDF1259505FB0005E503 /* Assets.xcassets in Resources */,
-				2B3EEDEC259505F80005E503 /* Main.storyboard in Resources */,
+				EB7056462597D56B00B50B99 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,7 +285,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B3EEDE9259505F80005E503 /* ViewController.swift in Sources */,
+				EB7056372597D50200B50B99 /* EnterViewController.swift in Sources */,
+				EB70563C2597D52000B50B99 /* ChatViewController.swift in Sources */,
+				EB70562A2597CCEE00B50B99 /* SocketIOManager.swift in Sources */,
 				2B3EEDE5259505F80005E503 /* AppDelegate.swift in Sources */,
+				EB7056412597D52E00B50B99 /* UserListViewController.swift in Sources */,
+				EB7056322597D45000B50B99 /* Model.swift in Sources */,
 				2B3EEDE7259505F80005E503 /* SceneDelegate.swift in Sources */,
 				2B3EEDEF259505F80005E503 /* IOSChat.xcdatamodeld in Sources */,
 			);
@@ -308,14 +328,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		2B3EEDEA259505F80005E503 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2B3EEDEB259505F80005E503 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		2B3EEDF2259505FB0005E503 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
