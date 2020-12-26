@@ -9,22 +9,14 @@ import UIKit
 
 class EnterViewController: UIViewController {
     
-    //MARK: - Nested Types
-    
     private enum Segues {
         static let showChat = "ShowChat"
     }
     
-    //MARK: - Instance Properties
-    
     @IBOutlet private weak var userNameTextField: UITextField!
     @IBOutlet private weak var enterButton: UIButton!
     
-    //MARK: -
-    
     private var socketManager = Managers.socketManager
-    
-    //MARK: - UIViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,16 +42,12 @@ class EnterViewController: UIViewController {
         }
         
     }
-    
-    //MARK: - Instance Methods
-    
+
     @IBAction private func onEnterButtonTouchUpInside(_ sender: Any) {
         let username = userNameTextField.text
         
         self.performSegue(withIdentifier: Segues.showChat, sender: username)
     }
-    
-    //MARK: -
     
     private func setupView() {
         enterButton.layer.cornerRadius = 5

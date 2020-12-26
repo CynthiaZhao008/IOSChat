@@ -9,8 +9,6 @@ import UIKit
 
 class UserListViewController: UIViewController {
     
-    //MARK: - Nested Types
-    
     private enum Segues {
         static let writeMessage = "WriteMessage"
     }
@@ -19,11 +17,7 @@ class UserListViewController: UIViewController {
         static let userTableCell = "UserTableCell"
     }
     
-    //MARK: - Instance Properties
-    
     @IBOutlet private weak var tableView: UITableView!
-    
-    //MARK: -
     
     private var username: String!
     
@@ -34,8 +28,6 @@ class UserListViewController: UIViewController {
     }
     
     private var socketManager = Managers.socketManager
-    
-    //MARK: - UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,13 +52,9 @@ class UserListViewController: UIViewController {
         }
     }
     
-    //MARK: - Instance Methods
-    
     func apply(username: String) {
         self.username = username
     }
-    
-    //MARK: -
     
     private func connectToChat() {
         socketManager.connectToChat(with: self.username)
@@ -89,14 +77,10 @@ class UserListViewController: UIViewController {
         })
     }
     
-    //MARK: -
-    
     @IBAction private func onWriteMessageTouchUpInside(_ sender: Any) {
         self.performSegue(withIdentifier: Segues.writeMessage, sender: self.username)
     }
 }
-
-//MARK: - UITableViewDataSource
 
 extension UserListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -116,12 +100,8 @@ extension UserListViewController: UITableViewDataSource {
 
 class UserTableViewCell: UITableViewCell {
     
-    //MARK: - Instance Properties
-    
     @IBOutlet private weak var userNameLabel: UILabel!
     @IBOutlet private weak var statusLabel: UILabel!
-    
-    //MARK: - Instance Methods
     
     func configure(userName: String, status: Status) {
         userNameLabel.text = userName

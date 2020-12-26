@@ -117,15 +117,15 @@
 				2B3EEDE6259505F80005E503 /* SceneDelegate.swift */,
 				2B3EEDE8259505F80005E503 /* ViewController.swift */,
 				EB7056312597D45000B50B99 /* Model.swift */,
-				EB7056452597D56B00B50B99 /* Main.storyboard */,
 				EB7056292597CCEE00B50B99 /* SocketIOManager.swift */,
+				EB70563B2597D52000B50B99 /* ChatViewController.swift */,
+				EB7056402597D52E00B50B99 /* UserListViewController.swift */,
+				EB7056362597D50200B50B99 /* EnterViewController.swift */,
+				EB7056452597D56B00B50B99 /* Main.storyboard */,
 				2B3EEDF0259505FB0005E503 /* Assets.xcassets */,
 				2B3EEDF2259505FB0005E503 /* LaunchScreen.storyboard */,
 				2B3EEDF5259505FB0005E503 /* Info.plist */,
 				2B3EEDED259505F80005E503 /* IOSChat.xcdatamodeld */,
-				EB7056362597D50200B50B99 /* EnterViewController.swift */,
-				EB70563B2597D52000B50B99 /* ChatViewController.swift */,
-				EB7056402597D52E00B50B99 /* UserListViewController.swift */,
 			);
 			path = IOSChat;
 			sourceTree = "<group>";

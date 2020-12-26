@@ -9,19 +9,13 @@ import UIKit
 
 class ChatViewController: UIViewController {
     
-    //MARK: - Nested Types
-    
     private enum Identifiers {
         static let messageTableCell = "MessageTableCell"
     }
     
-    //MARK: - Instance Properties
-    
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var messageTextField: UITextField!
     @IBOutlet private weak var bottomViewHeightConstraint: NSLayoutConstraint!
-    
-    //MARK: -
     
     private var username: String!
     
@@ -32,9 +26,7 @@ class ChatViewController: UIViewController {
             tableView.reloadData()
         }
     }
-    
-    //MARK: - UIViewController
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,22 +36,16 @@ class ChatViewController: UIViewController {
         
         startObservingMessages()
     }
-    
-    //MARK: - Instance Methods
-    
+
     func apply(username: String) {
         self.username = username
     }
-    
-    //MARK: -
     
     @IBAction private func onSendButtonTouchUpInside(_ sender: Any) {
         let text = messageTextField.text ?? ""
         
         socketManager.send(message: text, username: self.username)
     }
-    
-    //MARK: -
     
     func startObservingMessages() {
         socketManager.observeMessages(completionHandler: { [weak self] data in
@@ -109,8 +95,6 @@ class ChatViewController: UIViewController {
     }
 }
 
-//MARK: - UITableViewDataSource
-
 extension ChatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         messages.count
@@ -129,15 +113,11 @@ extension ChatViewController: UITableViewDataSource {
 
 class MessageTableViewCell: UITableViewCell {
     
-    //MARK: - Instance Properties
-    
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var senderLabel: UILabel!
     
-    //MARK: - Instance Methods
-    
     func configure(message: String, username: String) {
         messageLabel.text = message
-        senderLabel.text = "Отправитель: \(username)"
+        senderLabel.text = "Sender: \(username)"
     }
 }
