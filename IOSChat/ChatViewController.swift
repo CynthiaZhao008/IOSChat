@@ -118,6 +118,6 @@ class MessageTableViewCell: UITableViewCell {
     
     func configure(message: String, username: String) {
         messageLabel.text = message
-        senderLabel.text = "Sender: \(username)"
+        senderLabel.text = "\(username)"
     }
 }
