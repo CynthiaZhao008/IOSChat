@@ -29,6 +29,7 @@ class SocketIOManagerDefault: NSObject, SocketIOManager {
         super.init()
         
         manager = SocketManager(socketURL: URL(string: "http://74.91.11.107:3000")!)
+        //manager = SocketManager(socketURL: URL(string: "http://192.168.1.31:3000")!)
         socket = manager.defaultSocket
     }
 
@@ -50,7 +51,7 @@ class SocketIOManagerDefault: NSObject, SocketIOManager {
         }
     }
     
-    func send(message: String, username: String) {
+    func send(message: String, username: String){
         socket.emit("chatMessage", username, message)
     }
     
@@ -60,6 +61,7 @@ class SocketIOManagerDefault: NSObject, SocketIOManager {
             
             messageDict["nickname"] = dataArray[0] as! String
             messageDict["message"] = dataArray[1] as! String
+            messageDict["timeSent"] = dataArray[2] as! String
             
             completionHandler(messageDict)
         }
