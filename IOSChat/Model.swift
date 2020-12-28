@@ -19,5 +19,6 @@ struct UserData {
 struct MessageData {
     let text: String
     let sender: String
+    let time: String
 }
 

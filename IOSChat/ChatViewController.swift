@@ -41,7 +41,23 @@ class ChatViewController: UIViewController {
         self.username = username
     }
     
-    @IBAction private func onSendButtonTouchUpInside(_ sender: Any) {
+    func changeFormat(currTime: String) -> String
+    {
+        let formatter = DateFormatter()
+        
+        //input format
+        formatter.dateStyle = .short
+        formatter.timeStyle = .medium
+        let date = formatter.date(from: currTime)!
+        
+        //output format
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+        let formattedTime = formatter.string(from: date)
+        return formattedTime
+    }
+    
+    @IBAction func onSendButtonTouchUpInside(_ sender: Any) {
         let text = messageTextField.text ?? ""
         
         socketManager.send(message: text, username: self.username)
@@ -51,8 +67,9 @@ class ChatViewController: UIViewController {
         socketManager.observeMessages(completionHandler: { [weak self] data in
             let name = data["nickname"] as! String
             let text = data["message"] as! String
+            let time = data["timeSent"] as! String
             
-            let message = MessageData(text: text, sender: name)
+            let message = MessageData(text: text, sender: name, time: time)
             
             self?.messages.append(message)
         })
@@ -101,11 +118,12 @@ extension ChatViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let message = messages[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.messageTableCell, for: indexPath) as! MessageTableViewCell
         
-        cell.configure(message: message.text, username: message.sender)
+        cell.configure(message: message.text, username: message.sender, timeSent: changeFormat(currTime: message.time))
         
         return cell
     }
@@ -113,11 +131,14 @@ extension ChatViewController: UITableViewDataSource {
 
 class MessageTableViewCell: UITableViewCell {
     
-    @IBOutlet private weak var messageLabel: UILabel!
-    @IBOutlet private weak var senderLabel: UILabel!
+    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var senderLabel: UILabel!
+    @IBOutlet weak var timeSentLabel: UILabel!
     
-    func configure(message: String, username: String) {
+    func configure(message: String, username: String, timeSent: String) {
+        
         messageLabel.text = message
         senderLabel.text = "\(username)"
+        timeSentLabel.text = timeSent
     }
 }
