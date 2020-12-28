@@ -5,7 +5,7 @@
 
 import UIKit
 
-class UserListViewController: UIViewController {
+class UserListViewController: UIViewController, UITextFieldDelegate {
     
     private enum Segues {
         static let writeMessage = "WriteMessage"

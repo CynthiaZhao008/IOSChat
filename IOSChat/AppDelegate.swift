@@ -86,6 +86,16 @@ extension UIViewController {
         view.endEditing(true)
     }
     
+    func clearTextField(_ textField: UITextField){
+        textField.text = ""
+    }
+    
+    func TextFieldChars(_ textField: UITextField) -> Bool{
+        if textField.text!.count > 0 {
+            return true
+        }
+        return false
+    }
     
     
 }

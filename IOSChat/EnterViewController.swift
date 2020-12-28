@@ -4,7 +4,7 @@
 
 import UIKit
 
-class EnterViewController: UIViewController {
+class EnterViewController: UIViewController, UITextFieldDelegate {
     
     private enum Segues {
         static let showChat = "ShowChat"

@@ -4,7 +4,7 @@
 
 import UIKit
 
-class ChatViewController: UIViewController {
+class ChatViewController: UIViewController, UITextFieldDelegate {
     
     private enum Identifiers {
         static let messageTableCell = "MessageTableCell"
@@ -33,7 +33,9 @@ class ChatViewController: UIViewController {
         
         startObservingMessages()
         
-        self.hideKeyboardWhenTappedAround()
+       // self.hideKeyboardWhenTappedAround()
+        
+        messageTextField.delegate = self
         
     }
 
@@ -57,10 +59,26 @@ class ChatViewController: UIViewController {
         return formattedTime
     }
     
-    @IBAction func onSendButtonTouchUpInside(_ sender: Any) {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+       
+    
+    @IBAction func onSendButtonTouchUpInside(_ sender: UIButton) {
+        guard TextFieldChars(messageTextField) != false else{
+            let myAlert = UIAlertController(title: "Invalid", message: "Please enter a message", preferredStyle: UIAlertController.Style.alert)
+            myAlert.addAction(UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(myAlert, animated:true, completion: nil)
+                return
+        }
         let text = messageTextField.text ?? ""
-        
         socketManager.send(message: text, username: self.username)
+        clearTextField(messageTextField)
     }
     
     func startObservingMessages() {
