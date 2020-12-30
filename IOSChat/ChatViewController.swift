@@ -4,18 +4,20 @@
 
 import UIKit
 
-class ChatViewController: UIViewController, UITextFieldDelegate {
+class ChatViewController: UIViewController, UITextFieldDelegate{
     
     private enum Identifiers {
         static let messageTableCell = "MessageTableCell"
     }
     
+    var userList : UserListViewController = UserListViewController()
+    
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var messageTextField: UITextField!
     @IBOutlet private weak var bottomViewHeightConstraint: NSLayoutConstraint!
-    
+    private var keyboard : Keyboard = Keyboard()
+    var activeTextField : UITextField? = nil
     private var username: String!
-    
     private var socketManager = Managers.socketManager
     
     private var messages: [MessageData] = [] {
@@ -23,20 +25,20 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
             tableView.reloadData()
         }
     }
-
+    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupKeyboardNotifications()
-        
         self.navigationItem.title = username
-        
         startObservingMessages()
-        
-       // self.hideKeyboardWhenTappedAround()
-        
         messageTextField.delegate = self
-        
+        self.setupKeyboardScrolling()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.scrollToBottom(animated: false)
     }
 
     func apply(username: String) {
@@ -59,7 +61,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
         return formattedTime
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool { //done
         textField.resignFirstResponder()
         return true
     }
@@ -80,69 +82,100 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
         socketManager.send(message: text, username: self.username)
         clearTextField(messageTextField)
     }
-    
+
     func startObservingMessages() {
         socketManager.observeMessages(completionHandler: { [weak self] data in
             let name = data["nickname"] as! String
             let text = data["message"] as! String
             let time = data["timeSent"] as! String
-            
             let message = MessageData(text: text, sender: name, time: time)
-            
             self?.messages.append(message)
+            self?.scrollToBottom(animated: true)
         })
+        
     }
     
     private func setupKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.keyboardWillShow(with:)),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.keyboardWillHide(with:)),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil, using: keyboardWillShow)
+        notificationCenter.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: nil, using: keyboardWillHide)
     }
+    
+    private func setupKeyboardScrolling() {
+        self.keyboard = Keyboard()
+        let keyboardAnimation = { [unowned self] in
+            self.bottomViewHeightConstraint.constant = self.keyboard.height
+            self.view.layoutIfNeeded()
+        }
+        let keyboardCompletion: (Bool) -> Void = { [unowned self] _ in
+            self.scrollToBottom(animated: true)
+        }
+        self.keyboard.heightChanged = {
+            UIView.animate(
+                withDuration: 0.2,
+                animations: keyboardAnimation,
+                completion: keyboardCompletion
+            )
+        }
+        let tap =
+            UITapGestureRecognizer(
+                target: self,
+                action: #selector(self.hideKeyboard(_:))
+            )
+        self.tableView.addGestureRecognizer(tap)
+    }
+
+    @objc func hideKeyboard(_ sender: UITapGestureRecognizer) {
+        self.messageTextField.resignFirstResponder()
+    }
+    
     
     @objc
     private func keyboardWillShow(with notification: Notification) {
         guard let info = notification.userInfo, let keyboardEndSize = (info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size else {
             return
         }
-        
-        let keyboardHeight = keyboardEndSize.height
-        
-        UIView.animate(withDuration: 0.25) { [weak self] in
-            self?.bottomViewHeightConstraint.constant = keyboardHeight
-            
-            self?.view.layoutIfNeeded()
-        }
+        let keyboardHeight = keyboardEndSize.height /*
+        let safeAreaBottom = view.safeAreaLayoutGuide.layoutFrame.maxY
+        let viewHeight = view.bounds.height
+        var safeAreaOffset = viewHeight - safeAreaBottom */
+        let lastVisibleCell = tableView.indexPathsForVisibleRows?.last
+
+        UIView.animate(withDuration:0.3, delay: 0, options: [.curveEaseInOut], animations: { [self] in
+            self.bottomViewHeightConstraint.constant = keyboardHeight
+            self.view.layoutIfNeeded()
+            if let lastVisibleCell = lastVisibleCell{
+                self.tableView.scrollToRow(at: lastVisibleCell, at: .bottom, animated: true)
+            }
+        })
     }
     
+    private func scrollToBottom(animated: Bool){
+        if messages.count > 0{
+        let lastRow = IndexPath(row: messages.count-1, section: 0)
+        self.tableView.scrollToRow(at: lastRow, at: .bottom, animated: animated)
+        }
+    }
+
     @objc
     private func keyboardWillHide(with notification: Notification) {
-        UIView.animate(withDuration: 0.25) { [weak self] in
-            self?.bottomViewHeightConstraint.constant = 0
-            
-            self?.view.layoutIfNeeded()
-        }
+        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut], animations: {
+            self.bottomViewHeightConstraint.constant = 0
+            self.view.layoutIfNeeded()
+        })
     }
 }
 
+    
 extension ChatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let message = messages[indexPath.row]
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.messageTableCell, for: indexPath) as! MessageTableViewCell
-        
         cell.configure(message: message.text, username: message.sender, timeSent: changeFormat(currTime: message.time))
-        
         return cell
     }
 }
@@ -158,5 +191,8 @@ class MessageTableViewCell: UITableViewCell {
         messageLabel.text = message
         senderLabel.text = "\(username)"
         timeSentLabel.text = timeSent
+        
+        
     }
+    
 }
