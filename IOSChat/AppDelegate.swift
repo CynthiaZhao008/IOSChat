@@ -75,27 +75,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    func clearTextField(_ textField: UITextField){
-        textField.text = ""
-    }
-    
-    func TextFieldChars(_ textField: UITextField) -> Bool{
-        if textField.text!.count > 0 {
-            return true
-        }
-        return false
-    }
-    
-    
-}
+

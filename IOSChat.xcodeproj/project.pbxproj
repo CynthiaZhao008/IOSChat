@@ -17,7 +17,6 @@
 		2B3EEE0A259505FB0005E503 /* IOSChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3EEE09259505FB0005E503 /* IOSChatUITests.swift */; };
 		2B3EEE2525953CB30005E503 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 2B3EEE2425953CB30005E503 /* SocketIO */; };
 		EB1113EE259D0A5C004E8578 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1113ED259D0A5C004E8578 /* Keyboard.swift */; };
-		EB1113F3259D0C54004E8578 /* SendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1113F2259D0C54004E8578 /* SendView.swift */; };
 		EB70562A2597CCEE00B50B99 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7056292597CCEE00B50B99 /* SocketIOManager.swift */; };
 		EB7056322597D45000B50B99 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7056312597D45000B50B99 /* Model.swift */; };
 		EB7056372597D50200B50B99 /* EnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7056362597D50200B50B99 /* EnterViewController.swift */; };
@@ -59,7 +58,6 @@
 		2B3EEE09259505FB0005E503 /* IOSChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSChatUITests.swift; sourceTree = "<group>"; };
 		2B3EEE0B259505FB0005E503 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB1113ED259D0A5C004E8578 /* Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
-		EB1113F2259D0C54004E8578 /* SendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
 		EB7056292597CCEE00B50B99 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		EB7056312597D45000B50B99 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		EB7056362597D50200B50B99 /* EnterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				2B3EEDE3259505F80005E503 /* IOSChat */,
+				2B3EEDF5259505FB0005E503 /* Info.plist */,
 				2B3EEDFD259505FB0005E503 /* IOSChatTests */,
 				2B3EEE08259505FB0005E503 /* IOSChatUITests */,
 				2B3EEDE2259505F80005E503 /* Products */,
@@ -117,21 +116,12 @@
 		2B3EEDE3259505F80005E503 /* IOSChat */ = {
 			isa = PBXGroup;
 			children = (
+				EB7056452597D56B00B50B99 /* Main.storyboard */,
 				2B3EEDE4259505F80005E503 /* AppDelegate.swift */,
 				2B3EEDE6259505F80005E503 /* SceneDelegate.swift */,
-				2B3EEDE8259505F80005E503 /* ViewController.swift */,
-				EB7056312597D45000B50B99 /* Model.swift */,
-				EB1113ED259D0A5C004E8578 /* Keyboard.swift */,
-				EB7056292597CCEE00B50B99 /* SocketIOManager.swift */,
-				EB70563B2597D52000B50B99 /* ChatViewController.swift */,
-				EB1113F2259D0C54004E8578 /* SendView.swift */,
-				EB7056402597D52E00B50B99 /* UserListViewController.swift */,
-				EB7056362597D50200B50B99 /* EnterViewController.swift */,
-				EB7056452597D56B00B50B99 /* Main.storyboard */,
-				2B3EEDF0259505FB0005E503 /* Assets.xcassets */,
-				2B3EEDF2259505FB0005E503 /* LaunchScreen.storyboard */,
-				2B3EEDF5259505FB0005E503 /* Info.plist */,
-				2B3EEDED259505F80005E503 /* IOSChat.xcdatamodeld */,
+				EBC4397F25A120F7003FE3DF /* Model */,
+				EBC4397E25A11934003FE3DF /* View Controllers */,
+				EBC4398025A1218F003FE3DF /* Other Shi */,
 			);
 			path = IOSChat;
 			sourceTree = "<group>";
@@ -152,6 +142,37 @@
 				2B3EEE0B259505FB0005E503 /* Info.plist */,
 			);
 			path = IOSChatUITests;
+			sourceTree = "<group>";
+		};
+		EBC4397E25A11934003FE3DF /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EB7056362597D50200B50B99 /* EnterViewController.swift */,
+				EB7056402597D52E00B50B99 /* UserListViewController.swift */,
+				EB70563B2597D52000B50B99 /* ChatViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		EBC4397F25A120F7003FE3DF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EB7056292597CCEE00B50B99 /* SocketIOManager.swift */,
+				EB7056312597D45000B50B99 /* Model.swift */,
+				EB1113ED259D0A5C004E8578 /* Keyboard.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EBC4398025A1218F003FE3DF /* Other Shi */ = {
+			isa = PBXGroup;
+			children = (
+				2B3EEDE8259505F80005E503 /* ViewController.swift */,
+				2B3EEDED259505F80005E503 /* IOSChat.xcdatamodeld */,
+				2B3EEDF0259505FB0005E503 /* Assets.xcassets */,
+				2B3EEDF2259505FB0005E503 /* LaunchScreen.storyboard */,
+			);
+			path = "Other Shi";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,7 +319,6 @@
 				2B3EEDE5259505F80005E503 /* AppDelegate.swift in Sources */,
 				EB7056412597D52E00B50B99 /* UserListViewController.swift in Sources */,
 				EB7056322597D45000B50B99 /* Model.swift in Sources */,
-				EB1113F3259D0C54004E8578 /* SendView.swift in Sources */,
 				2B3EEDE7259505F80005E503 /* SceneDelegate.swift in Sources */,
 				2B3EEDEF259505F80005E503 /* IOSChat.xcdatamodeld in Sources */,
 			);
@@ -509,6 +529,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 86SVP8BX5P;
 				INFOPLIST_FILE = IOSChatTests/Info.plist;
+				"INFOPLIST_FILE[sdk=*]" = IOSChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -531,6 +552,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 86SVP8BX5P;
 				INFOPLIST_FILE = IOSChatTests/Info.plist;
+				"INFOPLIST_FILE[sdk=*]" = IOSChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
