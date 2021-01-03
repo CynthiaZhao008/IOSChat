@@ -6,17 +6,9 @@ import UIKit
 
 class ChatViewController: UIViewController, UITextFieldDelegate{
     
-    private enum Identifiers {
-        static let messageTableCell = "MessageTableCell"
-    }
-    
+    var Model : IOSModel = IOSModel()
     var userList : UserListViewController = UserListViewController()
-    
-    @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var messageTextField: UITextField!
-    @IBOutlet private weak var bottomViewHeightConstraint: NSLayoutConstraint!
     private var keyboard : Keyboard = Keyboard()
-    var activeTextField : UITextField? = nil
     private var username: String!
     private var socketManager = Managers.socketManager
     
@@ -25,8 +17,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate{
             tableView.reloadData()
         }
     }
-    
-        
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupKeyboardNotifications()
@@ -35,6 +26,11 @@ class ChatViewController: UIViewController, UITextFieldDelegate{
         messageTextField.delegate = self
         self.setupKeyboardScrolling()
     }
+    
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var messageTextField: UITextField!
+    @IBOutlet private weak var bottomViewHeightConstraint: NSLayoutConstraint!
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -45,15 +41,12 @@ class ChatViewController: UIViewController, UITextFieldDelegate{
         self.username = username
     }
     
-    func changeFormat(currTime: String) -> String
-    {
+    func changeFormat(currTime: String) -> String{
         let formatter = DateFormatter()
-        
         //input format
         formatter.dateStyle = .short
         formatter.timeStyle = .medium
         let date = formatter.date(from: currTime)!
-        
         //output format
         formatter.dateStyle = .none
         formatter.timeStyle = .short
@@ -135,10 +128,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate{
         guard let info = notification.userInfo, let keyboardEndSize = (info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size else {
             return
         }
-        let keyboardHeight = keyboardEndSize.height /*
-        let safeAreaBottom = view.safeAreaLayoutGuide.layoutFrame.maxY
-        let viewHeight = view.bounds.height
-        var safeAreaOffset = viewHeight - safeAreaBottom */
+        let keyboardHeight = keyboardEndSize.height 
         let lastVisibleCell = tableView.indexPathsForVisibleRows?.last
 
         UIView.animate(withDuration:0.3, delay: 0, options: [.curveEaseInOut], animations: { [self] in
@@ -166,12 +156,10 @@ class ChatViewController: UIViewController, UITextFieldDelegate{
     }
 }
 
-    
 extension ChatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         messages.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = messages[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.messageTableCell, for: indexPath) as! MessageTableViewCell
@@ -186,12 +174,10 @@ class MessageTableViewCell: UITableViewCell {
     @IBOutlet weak var senderLabel: UILabel!
     @IBOutlet weak var timeSentLabel: UILabel!
     
-    func configure(message: String, username: String, timeSent: String) {
-        
+    func configure(message: String, username: String, timeSent: String){
         messageLabel.text = message
         senderLabel.text = "\(username)"
         timeSentLabel.text = timeSent
-        
         
     }
     
